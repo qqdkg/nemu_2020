@@ -34,6 +34,7 @@ $(info KVM is only supported with ISA=x86, use QEMU instead)
 endif
 endif
 
+NEMU_HOME=`pwd`
 ifeq ($(DIFF),qemu)
 DIFF_REF_PATH = $(NEMU_HOME)/tools/qemu-diff
 DIFF_REF_SO = $(DIFF_REF_PATH)/build/$(ISA)-qemu-so
@@ -55,7 +56,7 @@ endif
 OBJ_DIR ?= $(BUILD_DIR)/obj-$(ISA)-$(ENGINE)$(SO)
 BINARY ?= $(BUILD_DIR)/$(ISA)-$(NAME)-$(ENGINE)$(SO)
 
-include Makefile.git
+# include Makefile.git
 
 .DEFAULT_GOAL = app
 
@@ -96,18 +97,18 @@ IMG :=
 NEMU_EXEC := $(BINARY) $(ARGS) $(IMG)
 
 $(BINARY): $(OBJS)
-	$(call git_commit, "compile")
+	# $(call git_commit, "compile")
 	@echo + LD $@
 	@$(LD) -O2 -rdynamic $(SO_LDLAGS) -o $@ $^ $(LD_LIBS)
 
 run-env: $(BINARY) $(DIFF_REF_SO)
 
 run: run-env
-	$(call git_commit, "run")
+	# $(call git_commit, "run")
 	$(NEMU_EXEC)
 
 gdb: run-env
-	$(call git_commit, "gdb")
+	# $(call git_commit, "gdb")
 	gdb -s $(BINARY) --args $(NEMU_EXEC)
 
 $(DIFF_REF_SO):

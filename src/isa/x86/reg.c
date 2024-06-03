@@ -41,7 +41,19 @@ void reg_test() {
   assert(pc_sample == cpu.pc);
 }
 
+#define NR_REGSL (sizeof(regsl)/sizeof(regsl[0]))
+#define REG_DESPLAY(REG, VAL)   printf("%s\t\t0x%x\n", REG, VAL)
+
 void isa_reg_display() {
+
+  for (int i = 0; i < NR_REGSL; i++)
+  {
+    REG_DESPLAY(regsl[i], cpu.gpr[i]._32);
+  }
+
+  REG_DESPLAY("pc", cpu.pc);
+
+  return;
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
