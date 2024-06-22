@@ -8,6 +8,7 @@
 
 #include "ui_info.h"
 #include "ui_s.h"
+#include "ui_x.h"
 
 void cpu_exec(uint64_t);
 int is_batch_mode();
@@ -46,12 +47,13 @@ static struct {
   char *description;
   int (*handler) (char *);
 } cmd_table [] = {
-  { "help", "Display informations about all supported commands", cmd_help },
-  { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
+  { "help"  , "Display informations about all supported commands", cmd_help },
+  { "c"     , "Continue the execution of the program", cmd_c },
+  { "q"     , "Exit NEMU", cmd_q },
   /* TODO: Add more commands */
-  { "s", "Processing n steps, 1 by default.", cmd_s },
-  { "info", "Show information.", cmd_info }
+  { "s"     , "Processing n steps, 1 by default.", cmd_s },
+  { "info"  , "Show information.", cmd_info },
+  { "x"     , "print memory.",  cmd_x}
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
