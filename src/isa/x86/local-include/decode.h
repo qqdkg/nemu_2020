@@ -295,8 +295,8 @@ static inline def_DHelper(out_a2dx) {
 }
 
 static inline def_DHelper(call_r32) {
-  decode_op_I(s, id_src1, true);
-  
+  decode_J(s);
+  operand_imm(s, id_src1, true, s->seq_pc, sizeof(s->seq_pc));
 }
 
 static inline void operand_write(DecodeExecState *s, Operand *op, rtlreg_t* src) {
