@@ -6,6 +6,13 @@
 #include "ui_str2ul.h"
 #include <memory/paddr.h>
 
+int Prase_x_expr(char *args, char **ppucNext, uint64_t *pulVal)
+{
+  // not finished
+
+  return -1;
+}
+
 int prase_x_args(char *args, uint64_t *pulNum, uint64_t *pulAddr){
     int iRet            = 0;
     // uint64_t ulAddr = 0;
@@ -26,8 +33,13 @@ int prase_x_args(char *args, uint64_t *pulNum, uint64_t *pulAddr){
     iRet = prase_str2ul(pucPtr, &pucPtrNext, &ulAddr);
     if (0 != iRet)
     {
-        Log("Fail to get secend args from args: %s, iRet = %d.", args, iRet);
-        return iRet;
+        // try caculate expr
+        iRet = Prase_x_expr(pucPtr, &pucPtrNext, &ulAddr);
+        if (0 != iRet)
+        {
+          Log("Fail to get secend args from args: %s, iRet = %d.", args, iRet);
+          return iRet;
+        }
     }
 
     /* juest get 2 args */
