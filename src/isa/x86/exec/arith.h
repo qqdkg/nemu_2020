@@ -6,7 +6,9 @@ static inline def_EHelper(add) {
 }
 
 static inline def_EHelper(sub) {
-  TODO();
+  // TODO();
+  rtl_sub(s, s1, ddest, dsrc1);
+  operand_write(s, id_dest, s1);
   print_asm_template2(sub);
 }
 
